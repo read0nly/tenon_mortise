@@ -125,9 +125,8 @@ a [dependency in your pubspec.yaml file](https://flutter.dev/platform-plugins/).
 
 See the example app for more complex examples.
 
-### Demo
 
-![](demo.png)
+![demo](https://github.com/read0nly/tenon_mortise/blob/main/demo.png)
 
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/), a specialized package that includes
