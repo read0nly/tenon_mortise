@@ -6,3 +6,7 @@
 
 * widget add clip sliver transition limit ...
 * list add toFlow
+
+## 0.0.7
+
+* delete unused files

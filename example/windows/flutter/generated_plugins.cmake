@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  tenon_mortise
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
