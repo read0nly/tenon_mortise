@@ -2,9 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 extension WidgetEvent on Widget {
-  Widget onClick({VoidCallback? click, bool inkWell = true}) => inkWell
-      ? applyInkWell(onTap: click)
-      : applyGestureDetector(onTap: click);
+  Widget onClick({VoidCallback? click, bool inkWell = true}) =>
+      inkWell ? applyInkWell(onTap: click) : applyGestureDetector(onTap: click);
 
   Widget onDoubleClick({VoidCallback? doubleClick, bool inkWell = true}) =>
       inkWell
