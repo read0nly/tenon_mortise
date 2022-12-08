@@ -10,3 +10,7 @@
 ## 0.0.7
 
 * delete unused files
+
+## 0.0.8
+
+* update sdk version
