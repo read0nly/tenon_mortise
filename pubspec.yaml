@@ -1,6 +1,6 @@
 name: tenon_mortise
 description: Easily build your Widgets, Avoid parenthesis nesting, easy to build UI, A little like swift-ui.
-version: 0.0.4
+version: 0.0.5
 author:  cc<nj.readonly@gmail.com>
 homepage: https://github.com/read0nly/tenon_mortise.git
 

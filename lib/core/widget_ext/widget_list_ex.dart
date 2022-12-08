@@ -88,6 +88,19 @@ extension ListEx on List<Widget> {
         children: reversed ? this.reversed.toList() : this,
       );
 
+  Widget toFlow({
+    Key? key,
+    required FlowDelegate delegate,
+    Clip clipBehavior = Clip.none,
+    bool reversed = false,
+  }) =>
+      Flow(
+        key: key,
+        clipBehavior: clipBehavior,
+        delegate: delegate,
+        children: reversed ? this.reversed.toList() : this,
+      );
+
   Widget toListView({
     Key? key,
     Axis scrollDirection = Axis.vertical,

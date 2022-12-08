@@ -170,9 +170,25 @@ extension WidgetEx on Widget {
         child: this,
       );
 
-  Widget applyPadding(EdgeInsets padding, {Key? key}) => Padding(
+  Widget applyLimitedBox({
+    Key? key,
+    double maxWidth = double.infinity,
+    double maxHeight = double.infinity,
+  }) =>
+      LimitedBox(
         key: key,
-        padding: padding,
+        maxHeight: maxHeight,
+        maxWidth: maxWidth,
+        child: this,
+      );
+
+  Widget applyConstrainedBox({
+    Key? key,
+    required BoxConstraints constraints,
+  }) =>
+      ConstrainedBox(
+        key: key,
+        constraints: constraints,
         child: this,
       );
 
@@ -187,35 +203,26 @@ extension WidgetEx on Widget {
         child: this,
       );
 
-  Widget applyContainer({
+  Widget applyFractionallySizedBox({
     Key? key,
-    AlignmentGeometry? alignment,
-    EdgeInsets? padding,
-    Color? color,
-    BoxDecoration? decoration,
-    Decoration? foregroundDecoration,
-    double? width,
-    double? height,
-    BoxConstraints? constraints,
-    EdgeInsets? margin,
-    Matrix4? transform,
-    AlignmentGeometry? transformAlignment,
-    Clip clipBehavior = Clip.none,
+    Alignment alignment = Alignment.center,
+    double? widthFactor,
+    double? heightFactor,
   }) =>
-      Container(
+      FractionallySizedBox(
         key: key,
-        height: height,
-        width: width,
-        padding: padding,
-        margin: margin,
-        clipBehavior: clipBehavior,
-        constraints: constraints,
-        color: decoration == null ? color : null,
         alignment: alignment,
-        decoration: decoration,
-        foregroundDecoration: foregroundDecoration,
-        transform: transform,
-        transformAlignment: transformAlignment,
+        widthFactor: widthFactor,
+        heightFactor: heightFactor,
+      );
+
+  Widget applyAspectRatio({
+    Key? key,
+    required double aspectRatio,
+  }) =>
+      AspectRatio(
+        key: key,
+        aspectRatio: aspectRatio,
         child: this,
       );
 
@@ -327,4 +334,275 @@ extension WidgetEx on Widget {
         falseWidget: orElseWidget,
         falseBuilder: orElseWidgetBuilder,
       );
+
+  /// 容器类组件
+  Widget applyPadding(EdgeInsets padding, {Key? key}) => Padding(
+        key: key,
+        padding: padding,
+        child: this,
+      );
+
+  Widget applyDecoratedBox(
+          {Key? key,
+          required Decoration decoration,
+          DecorationPosition position = DecorationPosition.background}) =>
+      DecoratedBox(
+        key: key,
+        decoration: decoration,
+        position: position,
+        child: this,
+      );
+
+  Widget applyTransform({
+    Key? key,
+    required Matrix4 transform,
+    Offset? origin,
+    AlignmentGeometry? alignment,
+    bool transformHitTests = true,
+    FilterQuality? filterQuality,
+  }) =>
+      Transform(
+        key: key,
+        transform: transform,
+        origin: origin,
+        alignment: alignment,
+        transformHitTests: transformHitTests,
+        filterQuality: filterQuality,
+        child: this,
+      );
+
+  Widget applyContainer({
+    Key? key,
+    AlignmentGeometry? alignment,
+    EdgeInsets? padding,
+    Color? color,
+    BoxDecoration? decoration,
+    Decoration? foregroundDecoration,
+    double? width,
+    double? height,
+    BoxConstraints? constraints,
+    EdgeInsets? margin,
+    Matrix4? transform,
+    AlignmentGeometry? transformAlignment,
+    Clip clipBehavior = Clip.none,
+  }) =>
+      Container(
+        key: key,
+        height: height,
+        width: width,
+        padding: padding,
+        margin: margin,
+        clipBehavior: clipBehavior,
+        constraints: constraints,
+        color: decoration == null ? color : null,
+        alignment: alignment,
+        decoration: decoration,
+        foregroundDecoration: foregroundDecoration,
+        transform: transform,
+        transformAlignment: transformAlignment,
+        child: this,
+      );
+
+  /// Clip
+  Widget applyClipOval({
+    Key? key,
+    CustomClipper<Rect>? clipper,
+    Clip clipBehavior = Clip.antiAlias,
+  }) =>
+      ClipOval(
+        key: key,
+        clipper: clipper,
+        clipBehavior: clipBehavior,
+        child: this,
+      );
+
+  Widget applyClipRRect({
+    Key? key,
+    BorderRadius borderRadius = BorderRadius.zero,
+    CustomClipper<RRect>? clipper,
+    Clip clipBehavior = Clip.antiAlias,
+  }) =>
+      ClipRRect(
+        key: key,
+        borderRadius: borderRadius,
+        clipper: clipper,
+        clipBehavior: clipBehavior,
+        child: this,
+      );
+
+  Widget applyClipRect({
+    Key? key,
+    CustomClipper<Rect>? clipper,
+    Clip clipBehavior = Clip.antiAlias,
+  }) =>
+      ClipRect(
+        key: key,
+        clipper: clipper,
+        clipBehavior: clipBehavior,
+        child: this,
+      );
+
+  Widget applyClipPath({
+    Key? key,
+    CustomClipper<Path>? clipper,
+    Clip clipBehavior = Clip.antiAlias,
+  }) =>
+      ClipPath(
+        key: key,
+        clipper: clipper,
+        clipBehavior: clipBehavior,
+        child: this,
+      );
+
+  /// FittedBox
+  Widget applyFittedBox({
+    Key? key,
+    BoxFit fit = BoxFit.contain,
+    Alignment alignment = Alignment.center,
+    Clip clipBehavior = Clip.none,
+  }) =>
+      FittedBox(
+        key: key,
+        fit: fit,
+        alignment: alignment,
+        clipBehavior: clipBehavior,
+        child: this,
+      );
+
+  // animation
+  Widget applyScaleTransition({
+    Key? key,
+    required Animation<double> scale,
+    Alignment alignment = Alignment.center,
+    FilterQuality? filterQuality,
+  }) =>
+      ScaleTransition(
+        key: key,
+        scale: scale,
+        alignment: alignment,
+        filterQuality: filterQuality,
+        child: this,
+      );
+
+  Widget applyAlignTransition({
+    Key? key,
+    required Animation<AlignmentGeometry> alignment,
+    double? widthFactor,
+    double? heightFactor,
+  }) =>
+      AlignTransition(
+        key: key,
+        alignment: alignment,
+        widthFactor: widthFactor,
+        heightFactor: heightFactor,
+        child: this,
+      );
+
+  Widget applyFadeTransition({
+    Key? key,
+    required Animation<double> opacity,
+    bool alwaysIncludeSemantics = false,
+  }) =>
+      FadeTransition(
+        key: key,
+        opacity: opacity,
+        alwaysIncludeSemantics: alwaysIncludeSemantics,
+        child: this,
+      );
+
+  Widget applyPositionedTransition({
+    Key? key,
+    required Animation<RelativeRect> rect,
+  }) =>
+      PositionedTransition(
+        key: key,
+        rect: rect,
+        child: this,
+      );
+
+  Widget applyRotationTransition({
+    Key? key,
+    required Animation<double> turns,
+    Alignment alignment = Alignment.center,
+    FilterQuality? filterQuality,
+  }) =>
+      RotationTransition(
+        key: key,
+        turns: turns,
+        alignment: alignment,
+        filterQuality: filterQuality,
+        child: this,
+      );
+
+  Widget applySlideTransition({
+    Key? key,
+    required Animation<Offset> position,
+    bool transformHitTests = true,
+    TextDirection? textDirection,
+  }) =>
+      SlideTransition(
+        key: key,
+        position: position,
+        transformHitTests: transformHitTests,
+        textDirection: textDirection,
+        child: this,
+      );
+
+  Widget applyDecoratedBoxTransition({
+    Key? key,
+    required Animation<Decoration> decoration,
+    DecorationPosition position = DecorationPosition.background,
+  }) =>
+      DecoratedBoxTransition(
+        key: key,
+        decoration: decoration,
+        position: position,
+        child: this,
+      );
+
+  Widget applyRelativePositionedTransition({
+    Key? key,
+    required Animation<Rect?> rect,
+    required Size size,
+  }) =>
+      RelativePositionedTransition(
+        key: key,
+        rect: rect,
+        size: size,
+        child: this,
+      );
+
+  Widget applySliverFadeTransition({
+    Key? key,
+    required Animation<double> opacity,
+    bool alwaysIncludeSemantics = false,
+  }) =>
+      SliverFadeTransition(
+        key: key,
+        opacity: opacity,
+        alwaysIncludeSemantics: alwaysIncludeSemantics,
+        sliver: this,
+      );
+
+  Widget applyDefaultTextStyleTransition({
+    Key? key,
+    required Animation<TextStyle> style,
+    TextAlign? textAlign,
+    bool softWrap = true,
+    TextOverflow overflow = TextOverflow.clip,
+    int? maxLines,
+  }) =>
+      DefaultTextStyleTransition(
+        key: key,
+        style: style,
+        textAlign: textAlign,
+        softWrap: softWrap,
+        overflow: overflow,
+        maxLines: maxLines,
+        child: this,
+      );
+
+  // sliver
+  Widget applySliverToBoxAdapter({Key? key}) =>
+      SliverToBoxAdapter(key: key, child: this);
 }
