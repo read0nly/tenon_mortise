@@ -5,15 +5,15 @@ extension NumEx on num {
 
   SizedBox get inColumn => SizedBox(height: toDouble());
 
-  Widget toHLine({double? height, Color? color}) => Container(
-        width: toDouble(),
-        height: height,
+  Widget toHLine({double? width, Color? color}) => Container(
+        width: width,
+        height: toDouble(),
         color: color,
       );
 
-  Widget toVLine({double? width, Color? color}) => Container(
-        height: toDouble(),
-        width: width,
+  Widget toVLine({double? height, Color? color}) => Container(
+        height: height,
+        width: toDouble(),
         color: color,
       );
 }
