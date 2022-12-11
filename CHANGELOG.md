@@ -14,3 +14,7 @@
 ## 0.0.8
 
 * update sdk version
+
+## 0.0.9
+
+add toHLine toVLine
