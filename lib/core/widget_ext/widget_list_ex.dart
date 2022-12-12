@@ -2,6 +2,28 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 extension ListEx on List<Widget> {
+  List<Widget> joinWidget(Widget widget) {
+    List<Widget> result = [];
+    for (int i = 0; i < length; i++) {
+      result.add(this[i]);
+      if (i < length - 1) {
+        result.add(widget);
+      }
+    }
+    return result;
+  }
+
+  List<Widget> joinWidgetBuiler(Widget Function(int index) builer) {
+    List<Widget> result = [];
+    for (int i = 0; i < length; i++) {
+      result.add(this[i]);
+      if (i < length - 1) {
+        result.add(builer.call(i));
+      }
+    }
+    return result;
+  }
+
   Widget toRow({
     Key? key,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,

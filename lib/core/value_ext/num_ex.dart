@@ -16,4 +16,7 @@ extension NumEx on num {
         width: toDouble(),
         color: color,
       );
+
+  Widget toExpanded({Widget? child}) =>
+      Expanded(flex: toInt(), child: child ?? SizedBox.shrink());
 }
